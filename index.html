@@ -182,72 +182,103 @@
 
   <!-- JavaScript Form Handling & Validation -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('registrationForm');
-      const fullNameInput = document.getElementById('fullName');
-      const workEmailInput = document.getElementById('workEmail');
-      const companyNameInput = document.getElementById('companyName');
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('registrationForm');
+    const fullNameInput = document.getElementById('fullName');
+    const workEmailInput = document.getElementById('workEmail');
+    const companyNameInput = document.getElementById('companyName');
 
-      const fullNameError = document.getElementById('fullNameError');
-      const workEmailError = document.getElementById('workEmailError');
-      const companyNameError = document.getElementById('companyNameError');
-      const statusMessage = document.getElementById('statusMessage');
+    const fullNameError = document.getElementById('fullNameError');
+    const workEmailError = document.getElementById('workEmailError');
+    const companyNameError = document.getElementById('companyNameError');
+    const statusMessage = document.getElementById('statusMessage');
 
-      // Helper function to validate email format
-      const isValidEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-      };
+    // Helper function to validate email format
+    const isValidEmail = (email) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    };
 
-      // Reset field errors
-      const clearErrors = () => {
-        [fullNameError, workEmailError, companyNameError].forEach(el => el.classList.add('hidden'));
-        [fullNameInput, workEmailInput, companyNameInput].forEach(el => {
-          el.classList.remove('border-red-500', 'focus:ring-red-500');
-          el.classList.add('border-slate-300', 'focus:ring-blue-600');
-        });
-        statusMessage.classList.add('hidden');
-      };
-
-      // Set input field visual error state
-      const showError = (input, errorElement) => {
-        errorElement.classList.remove('hidden');
-        input.classList.remove('border-slate-300', 'focus:ring-blue-600');
-        input.classList.add('border-red-500', 'focus:ring-red-500');
-      };
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault(); // Prevent default form submission
-        clearErrors();
-
-        let isValid = true;
-
-        // Validate Full Name
-        if (!fullNameInput.value.trim()) {
-          showError(fullNameInput, fullNameError);
-          isValid = false;
-        }
-
-        // Validate Email
-        if (!workEmailInput.value.trim() || !isValidEmail(workEmailInput.value.trim())) {
-          showError(workEmailInput, workEmailError);
-          isValid = false;
-        }
-
-        // Validate Company Name
-        if (!companyNameInput.value.trim()) {
-          showError(companyNameInput, companyNameError);
-          isValid = false;
-        }
-
-        // If validation succeeds, inform the user about the demo behavior
-        if (isValid) {
-          statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-amber-50 border-amber-300 text-amber-900';
-          statusMessage.innerHTML = '<strong>Form validation successful!</strong><br/>Note: Backend integration is disabled in this demo version, so no data was submitted.';
-          statusMessage.classList.remove('hidden');
-        }
+    // Reset field errors
+    const clearErrors = () => {
+      [fullNameError, workEmailError, companyNameError].forEach(el => el.classList.add('hidden'));
+      [fullNameInput, workEmailInput, companyNameInput].forEach(el => {
+        el.classList.remove('border-red-500', 'focus:ring-red-500');
+        el.classList.add('border-slate-300', 'focus:ring-blue-600');
       });
+      statusMessage.classList.add('hidden');
+    };
+
+    // Set input field visual error state
+    const showError = (input, errorElement) => {
+      errorElement.classList.remove('hidden');
+      input.classList.remove('border-slate-300', 'focus:ring-blue-600');
+      input.classList.add('border-red-500', 'focus:ring-red-500');
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent default form submission
+      clearErrors();
+
+      let isValid = true;
+
+      // Validate Full Name
+      if (!fullNameInput.value.trim()) {
+        showError(fullNameInput, fullNameError);
+        isValid = false;
+      }
+
+      // Validate Email
+      if (!workEmailInput.value.trim() || !isValidEmail(workEmailInput.value.trim())) {
+        showError(workEmailInput, workEmailError);
+        isValid = false;
+      }
+
+      // Validate Company Name
+      if (!companyNameInput.value.trim()) {
+        showError(companyNameInput, companyNameError);
+        isValid = false;
+      }
+
+      // If validation succeeds, send data to our Node.js backend (/api/register)
+      if (isValid) {
+        const formData = {
+          fullName: fullNameInput.value.trim(),
+          email: workEmailInput.value.trim(),
+          company: companyNameInput.value.trim()
+        };
+
+        try {
+          statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-blue-50 border-blue-300 text-blue-900';
+          statusMessage.innerHTML = 'Sending registration...';
+          statusMessage.classList.remove('hidden');
+
+          const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-emerald-50 border-emerald-300 text-emerald-900';
+            statusMessage.innerHTML = `<strong>Success!</strong><br/>${result.message}`;
+            form.reset(); // Limpia el formulario
+          } else {
+            statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-red-50 border-red-300 text-red-900';
+            statusMessage.innerHTML = `<strong>Error:</strong> ${result.error || 'Could not process registration.'}`;
+          }
+        } catch (err) {
+          console.error('Network error:', err);
+          statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-red-50 border-red-300 text-red-900';
+          statusMessage.innerHTML = '<strong>Network Error:</strong> Could not connect to the server.';
+        }
+      }
     });
+  });
   </script>
 
 </body>
