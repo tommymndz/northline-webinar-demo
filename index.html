@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N0RTHL1N3');</script>
+<!-- End Google Tag Manager -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simplify Your Monthly Reporting with Excel | Northline Training</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,6 +24,11 @@
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N0RTHL1N3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- Demo Banner -->
   <div class="bg-amber-500 text-slate-950 px-4 py-2 text-center text-xs md:text-sm font-semibold tracking-wide shadow-inner">
@@ -264,9 +278,18 @@
           const result = await response.json();
 
           if (response.ok) {
-            statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-emerald-50 border-emerald-300 text-emerald-900';
-            statusMessage.innerHTML = `<strong>Success!</strong><br/>${result.message}`;
-            form.reset(); // Limpia el formulario
+  statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-emerald-50 border-emerald-300 text-emerald-900';
+  statusMessage.innerHTML = `<strong>Success!</strong><br/>${result.message}`;
+  
+  // Capa de analítica: solo se dispara si el registro fue exitoso
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event': 'generate_lead',
+    'lead_type': 'webinar_registration',
+    'company_name': companyNameInput.value.trim()
+  });
+
+  form.reset();
           } else {
             statusMessage.className = 'mb-6 p-4 rounded-xl text-sm border bg-red-50 border-red-300 text-red-900';
             statusMessage.innerHTML = `<strong>Error:</strong> ${result.error || 'Could not process registration.'}`;
