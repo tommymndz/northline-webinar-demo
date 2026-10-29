@@ -99,4 +99,115 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                 <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-2xl hover:border-purple-500/50 transition-all">
                     <div class="text-purple-400 text-lg font-bold mb-1">01. Automation</div>
-                    <p
+                    <p class="text-xs text-slate-400">Build automated data pipelines seamlessly.</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-2xl hover:border-cyan-500/50 transition-all">
+                    <div class="text-cyan-400 text-lg font-bold mb-1">02. Validation</div>
+                    <p class="text-xs text-slate-400">Prevent reporting and input errors upfront.</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-2xl hover:border-purple-500/50 transition-all">
+                    <div class="text-purple-400 text-lg font-bold mb-1">03. Insights</div>
+                    <p class="text-xs text-slate-400">Turn raw spreadsheets into executive dashboards.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Glassmorphic Registration Card -->
+        <div id="register" class="lg:col-span-5 bg-slate-900/80 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl shadow-[0_0_50px_rgba(124,58,237,0.15)] relative">
+            <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-purple-500 to-cyan-500 text-slate-950 font-black text-[10px] tracking-widest px-4 py-1 rounded-full uppercase shadow-lg">
+                Exclusive Event
+            </div>
+
+            <h2 class="text-2xl font-black uppercase tracking-wide text-white mb-2">Claim Your Seat</h2>
+            <p class="text-xs text-slate-400 mb-6">Complete registration below to receive live room access link.</p>
+
+            <form id="registrationForm" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">Full Name</label>
+                    <input type="text" id="fullName" required 
+                        class="w-full bg-[#07090E]/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-all"
+                        placeholder="e.g. Alex Morgan">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">Work Email</label>
+                    <input type="email" id="workEmail" required 
+                        class="w-full bg-[#07090E]/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-all"
+                        placeholder="alex@company.com">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1.5">Company Name</label>
+                    <input type="text" id="companyName" required 
+                        class="w-full bg-[#07090E]/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-all"
+                        placeholder="Company Ltd">
+                </div>
+
+                <button type="submit" id="submitBtn" 
+                    class="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:opacity-95 text-white font-extrabold text-sm uppercase tracking-wider py-4 rounded-xl transition-all shadow-[0_0_25px_rgba(124,58,237,0.4)] mt-2">
+                    Access Masterclass
+                </button>
+            </form>
+
+            <div id="successMessage" class="hidden mt-4 p-5 bg-purple-950/40 border border-purple-500/50 text-purple-200 rounded-xl text-xs text-center font-medium">
+                ✨ Registration verified! Check your email inbox for your access link.
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript Tracking & Form Handler -->
+    <script>
+        const form = document.getElementById('registrationForm');
+        let formStarted = false;
+
+        form.addEventListener('focusin', () => {
+            if (!formStarted) {
+                formStarted = true;
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'form_start' });
+                console.log("DataLayer: form_start event fired");
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = "VERIFYING...";
+
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                workEmail: document.getElementById('workEmail').value,
+                companyName: document.getElementById('companyName').value
+            };
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) throw new Error('Server error');
+
+                form.style.display = 'none';
+                document.getElementById('successMessage').classList.remove('hidden');
+
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'generate_lead',
+                    user_email: formData.workEmail
+                });
+                console.log("DataLayer: generate_lead event fired");
+
+            } catch (error) {
+                alert("Server verification failed. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "ACCESS MASTERCLASS";
+            }
+        });
+    </script>
+</body>
+</html>
