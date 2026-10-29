@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataAutomate | Masterclass & Live Webinar</title>
+    <title>AI Reality Check | Masterclass 2026</title>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -13,157 +13,90 @@
     })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
     <!-- End Google Tag Manager -->
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Google Fonts & Tailwind CSS CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: {
+                        brand: { purple: '#7C3AED', cyan: '#06B6D4', dark: '#090D16' }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-[#07090E] text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-purple-500 selection:text-white">
 
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Top Banner / Badge -->
-    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="bg-indigo-600 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Live Masterclass</span>
-                <span class="text-sm font-medium text-slate-400">DataAutomate Series</span>
+    <!-- Background Glow Effects -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] pointer-events-none z-0 opacity-40 blur-[120px] bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-400"></div>
+
+    <!-- Header Navigation -->
+    <header class="relative z-10 border-b border-slate-800/60 bg-[#07090E]/80 backdrop-blur-md sticky top-0">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="h-3 w-3 rounded-full bg-cyan-400 animate-pulse"></div>
+                <span class="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-lg uppercase">
+                    AI REALITY CHECK
+                </span>
             </div>
-            <div class="text-xs text-indigo-400 font-semibold tracking-wide">Limited Seats Available</div>
+            <a href="#register" class="bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-bold text-xs uppercase tracking-widest px-5 py-2.5 rounded-full hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] transition-all">
+                Reserve Spot
+            </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <main class="max-w-7xl mx-auto px-4 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <main class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <!-- Left Column: Copy & Value Prop -->
-        <div class="lg:col-span-7 space-y-6">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-                Stop Wasting Hours Every Month on <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Broken Spreadsheets</span>
+        <div class="lg:col-span-7 space-y-8">
+            
+            <div class="inline-flex items-center space-x-2 bg-purple-950/60 border border-purple-500/30 px-4 py-1.5 rounded-full">
+                <span class="text-purple-400 font-semibold text-xs tracking-widest uppercase">Live Executive Masterclass</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-cyan-400 text-xs font-medium">Free Access</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.05]">
+                Stop The Hype. <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-cyan-400">
+                    Master Real AI
+                </span> <br>
+                For Operations.
             </h1>
-            <p class="text-lg md:text-xl text-slate-300 leading-relaxed">
-                Join our exclusive live session for operations and admin managers. Learn actionable frameworks to streamline data workflows, eliminate manual errors, and generate executive-ready reports in minutes.
+
+            <p class="text-lg text-slate-300 max-w-2xl leading-relaxed">
+                A high-impact 45-minute reality check for business leaders. Learn actionable frameworks to automate reporting workflows, eliminate manual spreadsheet friction, and scale efficiency without code.
             </p>
-            
-            <!-- Key Takeaways Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
-                    <div class="text-indigo-400 font-bold mb-1">01. Templates</div>
-                    <p class="text-xs text-slate-400">Build reusable data frameworks effortlessly.</p>
+
+            <!-- Metrics Bar -->
+            <div class="grid grid-cols-3 gap-6 pt-4 border-t border-slate-800/80">
+                <div>
+                    <p class="text-3xl font-extrabold text-white">45<span class="text-purple-400">m</span></p>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Live Masterclass</p>
                 </div>
-                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
-                    <div class="text-indigo-400 font-bold mb-1">02. Validation</div>
-                    <p class="text-xs text-slate-400">Eliminate formatting and input errors upfront.</p>
+                <div>
+                    <p class="text-3xl font-extrabold text-white">100<span class="text-cyan-400">%</span></p>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Practical Framework</p>
                 </div>
-                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
-                    <div class="text-indigo-400 font-bold mb-1">03. Speed</div>
-                    <p class="text-xs text-slate-400">Turn raw numbers into visual executive summaries.</p>
+                <div>
+                    <p class="text-3xl font-extrabold text-white">500<span class="text-purple-400">+</span></p>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Ops Leaders Joined</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Right Column: Registration Card & Form -->
-        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl relative">
-            <div class="absolute -top-3 right-6 bg-cyan-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase">
-                Free Registration
-            </div>
-            
-            <h2 class="text-2xl font-bold mb-2">Reserve Your Spot</h2>
-            <p class="text-sm text-slate-400 mb-6">Fill out the form below to secure access to the live session.</p>
-
-            <form id="registrationForm" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
-                        placeholder="e.g. Sarah Connor">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Work Email</label>
-                    <input type="email" id="workEmail" name="workEmail" required 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
-                        placeholder="sarah@company.com">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Company Name</label>
-                    <input type="text" id="companyName" name="companyName" required 
-                        class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-indigo-500 transition-colors"
-                        placeholder="Company Ltd">
-                </div>
-
-                <button type="submit" id="submitBtn" 
-                    class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3.5 rounded-lg transition-all shadow-lg shadow-indigo-600/20 mt-2">
-                    Register Your Interest
-                </button>
-            </form>
-
-            <!-- Success Message Container -->
-            <div id="successMessage" class="hidden mt-4 p-4 bg-emerald-950/50 border border-emerald-800 text-emerald-300 rounded-lg text-sm text-center">
-                Registration processed successfully! Check your inbox for details.
-            </div>
-        </div>
-
-    </main>
-
-    <!-- JavaScript Tracking & Form Logic -->
-    <script>
-        const form = document.getElementById('registrationForm');
-        let formStarted = false;
-
-        // Disparar evento form_start cuando el usuario interactúa por primera vez con el formulario
-        form.addEventListener('focusin', () => {
-            if (!formStarted) {
-                formStarted = true;
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({ event: 'form_start' });
-                console.log("DataLayer Event: form_start tracked");
-            }
-        });
-
-        // Manejador del envío del formulario
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Processing...";
-
-            const formData = {
-                fullName: document.getElementById('fullName').value,
-                workEmail: document.getElementById('workEmail').value,
-                companyName: document.getElementById('companyName').value
-            };
-
-            try {
-                // Envío seguro al endpoint de Node.js
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-
-                if (!response.ok) throw new Error('Server error');
-
-                // Ocultar formulario y mostrar éxito
-                form.style.display = 'none';
-                document.getElementById('successMessage').classList.remove('hidden');
-
-                // DISPARAR EVENTO DE CONVERSIÓN EN GTM (DataLayer)
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    event: 'generate_lead',
-                    user_email: formData.workEmail
-                });
-                console.log("DataLayer Event: generate_lead tracked successfully");
-
-            } catch (error) {
-                alert("Something went wrong. Please try again.");
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Register Your Interest";
-            }
-        });
-    </script>
-</body>
-</html>
+            <!-- Key Features Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-2xl hover:border-purple-500/50 transition-all">
+                    <div class="text-purple-400 text-lg font-bold mb-1">01. Automation</div>
+                    <p
